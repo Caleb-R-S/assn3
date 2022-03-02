@@ -1,30 +1,45 @@
 import java.util.LinkedList;
 
 public class TaskQueue {
-    private Boolean isOpen = true;
+    // private Boolean isOpen = true;
+    // private Boolean mutexLock = true;    
     private LinkedList<Task> list = new LinkedList<>();
 
-    public void closeForEditing() {
-        this.isOpen = false;
-    }
+    
+    
+    // public void closeForEditing() {
+    //     this.isOpen = false;
+    // }
 
-    public void releaseForEditing() {
-        this.isOpen = true;
-    }
+    // public void releaseForEditing() {
+    //     this.isOpen = true;
+    // }
 
-    public Boolean checkForEditing() {
-        return this.isOpen;
-    }
+    // public Boolean checkForEditing() {
+    //     return this.isOpen;
+    // }
 
-    public Task getNextTeTask() {
+    public synchronized Task getNextTask() {
         return list.removeFirst();
     }
 
-    public void addNewTask(Task newTask) {
+    // public Boolean checkMutex() {
+    //     return this.mutexLock;
+    // }
+
+    // public void lockMutex() {
+    //     this.mutexLock = false;
+    // }
+
+    // public void unlockMutex() {
+    //     this.mutexLock = true;
+    // }
+
+    public synchronized void addNewTask(Task newTask) {
         list.add(newTask);
     }
 
-    public Integer length() {
+    public synchronized Integer length() {
         return list.size();
     }
 }

@@ -7,37 +7,18 @@ public class WorkerThread implements Runnable{
         this.results = results;
     }
 
-
     public synchronized void run () {
         while(remainingDigits.length() > 0) {
             Task currentTask = remainingDigits.getNextTask();
             results.addNewDigit(currentTask.getDigitOfPi(), currentTask.completeTask());
             results.incrementTasksCompleted();
+            Integer count = results.getTasksCompleted();
+            if (count % 10 == 0) {
+                System.out.print(".");
+            }
+            if (count % 250 == 0) {
+                System.out.print("\n");
+            }
         }
     }
-    public synchronized void CompleteTasks() {
-        while(remainingDigits.length() > 0) {
-            // if (remainingDigits.checkForEditing()) {
-                // remainingDigits.closeForEditing();
-                Task currentTask = remainingDigits.getNextTask();
-                //CREATE THREAD HERE
-                // String nextDigit = currentTask.completeTask();
-                //ABOVE
-                // Boolean hasBeenAdded = false;
-                // while(!hasBeenAdded) {
-                    // if (results.checkForEditing()) {
-                        //Maybe start thread here
-                        // results.closeForEditing();
-                        results.addNewDigit(currentTask.getDigitOfPi(), currentTask.completeTask());
-                        results.incrementTasksCompleted();
-                        // results.releaseForEditing();
-                        // hasBeenAdded = true;
-                    // }
-                // }
-                // remainingDigits.releaseForEditing();
-            // }
-        }
-    }
-
-
 }

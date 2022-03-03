@@ -32,18 +32,6 @@ public class Main {
             thread.start();
         }
     
-        int countOfCompleted = 0;
-        while(remainingDigits.length() >= 0) {
-            int currentCompleted = results.getTasksCompleted();
-            if (currentCompleted % 50 == 0 && currentCompleted > countOfCompleted) {
-                countOfCompleted = currentCompleted;
-                System.out.print(".");
-                System.out.flush();
-            }
-            if (remainingDigits.length() == 0) {
-                break;
-            }
-        }
         int counter = 0;
         while(counter != totalNumberOfcores) {
             counter = 0;
